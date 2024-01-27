@@ -5,6 +5,7 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
+    public GameObject player;
     public PlayerXP playerXP;
     public GameObject text;
 
@@ -17,6 +18,8 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        playerXP = player.GetComponent<PlayerXP>();
         health = maxHealth;
     }
 
@@ -33,6 +36,7 @@ public class Health : MonoBehaviour
             else
             {
                 playerXP.currentXP += xp;
+                Destroy(gameObject);
             }
             
         }
