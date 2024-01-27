@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
     public PlayerXP playerXP;
+    public GameObject text;
 
     public int maxHealth;
     public int health;
@@ -23,8 +25,16 @@ public class Health : MonoBehaviour
         if (health < 0)
         {
             //if player, lose
+            if (gameObject.tag == "Player")
+            {
+                text.SetActive(true);
+            }
             //if enemy, give exp to player
-            playerXP.currentXP += xp;
+            else
+            {
+                playerXP.currentXP += xp;
+            }
+            
         }
     }
 
