@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FrakenLaughter.sln"
+    "dotnet.defaultSolution": "LaughDamage.sln"
 }
