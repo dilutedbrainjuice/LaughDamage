@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -7,6 +8,10 @@ public class PlayerAttack : MonoBehaviour
     private float lastLaughTime,lastHairTime,lastEyesTime,lastEarTime,lastNoseTime;
 
     public Animator mouthAnimator;
+    public Animator hairAnimator;
+    public Animator noseAnimator;
+    public Animator eyeAnimator;
+    public Animator earsAnimator;
     
     public float laughAttackCooldown = 2f;
     public float hairAttackCooldown = 9f;
@@ -23,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
     //public EyesArea eyearea;
     public int laughDamage = 6;
     public int hairDamage = 20;
-    public int eyesDamage = 10;
+    public int eyesDamage = 40;
     public int earDamage = 20;
 
 
@@ -34,6 +39,10 @@ public class PlayerAttack : MonoBehaviour
     public float spawnRadius = 5f;
 
 
+
+    public GameObject laughEffect;
+    public GameObject laserEffectleft;
+    public GameObject laserEffectright;
 
     // Update is called once per frame
     void Update()
@@ -47,6 +56,12 @@ public class PlayerAttack : MonoBehaviour
     }
     void Laugh(){
         float currentTime = Time.time;
+
+        //laserEffectleft.SetActive(false);
+        //laserEffectright.SetActive(false);
+
+        
+        
         if (currentTime - lastLaughTime >= laughAttackCooldown)
         {
             PerformLaugh();
@@ -61,6 +76,7 @@ public class PlayerAttack : MonoBehaviour
     {
 
         mouthAnimator.SetBool("IsLaughing", true);
+        laughEffect.SetActive(true);
         StartCoroutine(StopLaughing());
 
         foreach (GameObject enemy in laughradius.enemiesInRange)
@@ -108,6 +124,8 @@ public class PlayerAttack : MonoBehaviour
 
     void PerformHairAttack()
     {
+        hairAnimator.SetBool("IsExtending",true);
+        StartCoroutine(StopExtending());
         foreach (GameObject enemy in hairarea.enemiesInHairRange)
         {
             if (enemy != null)
@@ -124,6 +142,9 @@ public class PlayerAttack : MonoBehaviour
         if (currentTime - lastEyesTime >= eyeAttackCooldown)
         {
             PerformEyeAttack();
+            laserEffectleft.SetActive(true);
+            laserEffectright.SetActive(true);
+            StartCoroutine(StopLaser());
             lastEyesTime = currentTime;
         }
 
@@ -135,6 +156,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void PerformEyeAttack()
     {
+        
         
         foreach (GameObject enemy in eyearea.enemiesInEyesRange)
         {
@@ -225,6 +247,20 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         mouthAnimator.SetBool("IsLaughing", false);
+        laughEffect.SetActive(false);
+    }
+
+    IEnumerator StopExtending()
+    {
+        yield return new WaitForSeconds(1f);
+        hairAnimator.SetBool("IsExtending",false);
+    }
+
+    IEnumerator StopLaser()
+    {
+        yield return new WaitForSeconds(1f);
+        laserEffectleft.SetActive(false);
+        laserEffectright.SetActive(false);
     }
 
 }
