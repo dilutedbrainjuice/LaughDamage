@@ -33,6 +33,8 @@ public class PlayerAttack : MonoBehaviour
     public int numberOfBoogers = 10;
     public float spawnRadius = 5f;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -45,9 +47,6 @@ public class PlayerAttack : MonoBehaviour
     }
     void Laugh(){
         float currentTime = Time.time;
-
-        
-        
         if (currentTime - lastLaughTime >= laughAttackCooldown)
         {
             PerformLaugh();
