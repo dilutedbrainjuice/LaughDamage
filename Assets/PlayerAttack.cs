@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private float lastLaughTime,lastHairTime,lastEyesTime,lastEarTime,lastNoseTime;
+
+    public Animator mouthAnimator;
     
     public float laughAttackCooldown = 2f;
     public float hairAttackCooldown = 9f;
@@ -43,6 +45,8 @@ public class PlayerAttack : MonoBehaviour
     }
     void Laugh(){
         float currentTime = Time.time;
+
+        
         
         if (currentTime - lastLaughTime >= laughAttackCooldown)
         {
@@ -56,7 +60,10 @@ public class PlayerAttack : MonoBehaviour
     }
     void PerformLaugh()
     {
-        
+
+        mouthAnimator.SetBool("IsLaughing", true);
+        StartCoroutine(StopLaughing());
+
         foreach (GameObject enemy in laughradius.enemiesInRange)
         {
             if (enemy != null)
@@ -215,7 +222,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-
+    IEnumerator StopLaughing()
+    {
+        yield return new WaitForSeconds(1f);
+        mouthAnimator.SetBool("IsLaughing", false);
+    }
 
 }
 
