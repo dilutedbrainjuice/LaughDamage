@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7226247229613212790}
   m_Layer: 0
   m_Name: EnemyObject
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20289170a3956af46aba65a921cfb93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerXP: {fileID: 0}
+  text: {fileID: 0}
   maxHealth: 10
   health: 0
   xp: 5
@@ -202,5 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  slowedSpeed: 1.25
   player: {fileID: 0}
+  canMove: 1
+  stunTime: 0
+  step: 0
+  slowed: 0
+  slowTime: 0
   target: {fileID: 0}

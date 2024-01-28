@@ -8,7 +8,7 @@ public class HairArea : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject enemy = collision.gameObject;
-        if (!enemiesInHairRange.Contains(enemy))
+        if (!enemiesInHairRange.Contains(enemy) && enemy.tag == "Enemy")
         {
             enemiesInHairRange.Add(enemy);
         }

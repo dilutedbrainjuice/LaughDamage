@@ -13,7 +13,7 @@ public class LaughRadius : MonoBehaviour
         
 
         GameObject enemy = collision.gameObject;
-        if (!enemiesInRange.Contains(enemy))
+        if (!enemiesInRange.Contains(enemy) && enemy.tag == "Enemy")
         {
             enemiesInRange.Add(enemy);
         }

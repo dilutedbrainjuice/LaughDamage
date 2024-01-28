@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyesArea : MonoBehaviour
+public class EarArea : MonoBehaviour
 {
-    public List<GameObject> enemiesInEyesRange;
+    public List<GameObject> enemiesInEarRange;
     private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject enemy = collision.gameObject;
-        if (!enemiesInEyesRange.Contains(enemy) && enemy.tag == "Enemy")
+        if (!enemiesInEarRange.Contains(enemy) && enemy.tag == "Enemy")
         {
-            enemiesInEyesRange.Add(enemy);
+            enemiesInEarRange.Add(enemy);
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject enemy = collision.gameObject;
 
         // Check if the enemy is in the list
-        if (enemiesInEyesRange.Contains(enemy))
+        if (enemiesInEarRange.Contains(enemy))
         {
             // Remove the enemy from the list
-            enemiesInEyesRange.Remove(enemy);
+            enemiesInEarRange.Remove(enemy);
         }
+
+
     }
 }
